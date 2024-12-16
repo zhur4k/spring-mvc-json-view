@@ -20,12 +20,11 @@ public class User {
     @JsonView(Views.UserDetails.class)
     private String address;
 
-    @JsonView(Views.UserDetails.class)
     private String phone;
 
-    @JsonView(Views.UserDetails.class)
     private String email;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonView(Views.UserSummary.class)
     private List<Order> orders = new ArrayList<>();
 }

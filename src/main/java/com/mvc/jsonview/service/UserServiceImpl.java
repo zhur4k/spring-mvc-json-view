@@ -1,5 +1,6 @@
 package com.mvc.jsonview.service;
 
+import com.mvc.jsonview.model.Order;
 import com.mvc.jsonview.model.User;
 import com.mvc.jsonview.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(User user) {
+        for (Order order : user.getOrders()) {
+            order.setUser(user);
+        }
         userRepository.save(user);
     }
 }

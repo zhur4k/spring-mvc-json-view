@@ -11,20 +11,22 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(Views.UserDetails.class)
+    @JsonView(Views.UserSummary.class)
     private Long id;
 
-    @JsonView(Views.UserDetails.class)
+    @JsonView(Views.UserSummary.class)
     private String name;
 
-    @JsonView(Views.UserDetails.class)
+    @JsonView(Views.UserSummary.class)
     private String address;
 
+    @JsonView(Views.UserSummary.class)
     private String phone;
 
+    @JsonView(Views.UserSummary.class)
     private String email;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonView(Views.UserSummary.class)
+    @JsonView(Views.UserDetails.class)
     private List<Order> orders = new ArrayList<>();
 }

@@ -18,7 +18,7 @@ public class UserController {
     }
 
     @GetMapping
-    @JsonView(Views.UserDetails.class)
+    @JsonView(Views.UserSummary.class)
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }

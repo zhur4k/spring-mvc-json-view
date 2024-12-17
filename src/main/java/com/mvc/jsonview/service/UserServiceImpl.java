@@ -1,5 +1,9 @@
 package com.mvc.jsonview.service;
 
+import com.mvc.jsonview.dto.UserCreateDto;
+import com.mvc.jsonview.dto.UserUpdateDto;
+import com.mvc.jsonview.dto.mapper.UserCreateMapper;
+import com.mvc.jsonview.dto.mapper.UserUpdateMapper;
 import com.mvc.jsonview.model.Order;
 import com.mvc.jsonview.model.User;
 import com.mvc.jsonview.repository.UserRepository;
@@ -12,8 +16,14 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    private final UserCreateMapper userCreateMapper;
+
+    private final UserUpdateMapper userUpdateMapper;
+
+    public UserServiceImpl(UserRepository userRepository, UserCreateMapper userCreateMapper, UserUpdateMapper userUpdateMapper) {
         this.userRepository = userRepository;
+        this.userCreateMapper = userCreateMapper;
+        this.userUpdateMapper = userUpdateMapper;
     }
 
     @Override
@@ -27,8 +37,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(User user) {
-        userRepository.save(user);
+    public void updateUser(UserUpdateDto user) {
+        userRepository.save(userUpdateMapper.apply(user));
     }
 
     @Override
@@ -37,7 +47,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(User user) {
+    public void createUser(UserCreateDto userDto) {
+        User user = userCreateMapper.apply(userDto);
         for (Order order : user.getOrders()) {
             order.setUser(user);
         }

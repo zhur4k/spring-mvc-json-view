@@ -1,11 +1,15 @@
 package com.mvc.jsonview.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.mvc.jsonview.dto.UserCreateDto;
+import com.mvc.jsonview.dto.UserUpdateDto;
 import com.mvc.jsonview.model.User;
 import com.mvc.jsonview.model.Views;
 import com.mvc.jsonview.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,13 +36,13 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createUser(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@RequestBody @Valid UserCreateDto user) {
         userService.createUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping("/update")
-    public ResponseEntity<?> updateUser(@RequestBody User user) {
+    public ResponseEntity<?> updateUser(@RequestBody @Valid UserUpdateDto user) {
         userService.updateUser(user);
         return ResponseEntity.ok().build();
     }

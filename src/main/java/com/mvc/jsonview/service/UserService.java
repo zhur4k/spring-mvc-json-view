@@ -1,5 +1,7 @@
 package com.mvc.jsonview.service;
 
+import com.mvc.jsonview.dto.UserCreateDto;
+import com.mvc.jsonview.dto.UserUpdateDto;
 import com.mvc.jsonview.model.User;
 
 import java.util.List;
@@ -10,9 +12,9 @@ public interface UserService {
 
     User getUserById(Long id);
 
-    void updateUser(User user);
+    void updateUser(UserUpdateDto user);
 
     void deleteUser(Long id);
 
-    void createUser(User user);
+    void createUser(UserCreateDto user);
 }

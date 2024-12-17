@@ -1,5 +1,6 @@
 package com.mvc.jsonview.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 
@@ -25,6 +26,7 @@ public class Order {
 
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     public Long getId() {

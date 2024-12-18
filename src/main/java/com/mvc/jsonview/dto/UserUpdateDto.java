@@ -9,6 +9,8 @@ import java.util.List;
 
 public record UserUpdateDto(
     @NotNull
+    Long id,
+    @NotNull
     @Size(min = 3, max = 50,message = "Имя пользователя должно содержать от 3 до 50 символов")
     String name,
 

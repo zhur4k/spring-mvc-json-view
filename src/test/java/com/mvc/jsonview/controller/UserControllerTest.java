@@ -8,9 +8,9 @@ import com.mvc.jsonview.model.User;
 import com.mvc.jsonview.model.Views;
 import com.mvc.jsonview.service.UserService;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.test.web.servlet.MockMvc;
@@ -30,7 +30,7 @@ class UserControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @Mock
     private UserService userService;
 
     @Autowired
@@ -157,6 +157,7 @@ class UserControllerTest {
     @Test
     void teatUpdateUserSuccess() throws Exception {
         UserUpdateDto userUpdateDto = new UserUpdateDto(
+                1L,
                 "Иван Иванов",
                 "г. Москва, ул. Ленина, 1",
                 "+7-900-123-45-67",
@@ -173,6 +174,7 @@ class UserControllerTest {
     @Test
     void teatUpdateUserException() throws Exception {
         UserUpdateDto userUpdateDto = new UserUpdateDto(
+                1L,
                 "Иван Иванов",
                 "г. Москва, ул. Ленина, 1",
                 "+7-900-123-45-67",
